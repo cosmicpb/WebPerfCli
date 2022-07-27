@@ -6,6 +6,7 @@ from jsonpath_rw import jsonpath, parse
 import click
 import requests
 import csv
+from datetime import datetime
 
 
 @click.command()
@@ -39,9 +40,12 @@ def hello(m, s, k):
             tbt_Exp = parse('$.lighthouseResult.audits["total-blocking-time"].numericValue')
             tbt = tbt_Exp.find(responseJson)
 
+            now = datetime.now()
+            dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
+
 
             
-            print('URL = ' + str(row[0]) + '||| LCP = ' + str(lcp[0].value) + '||| CLS = ' + str(cls[0].value) + '||| TBT = ' + str(tbt[0].value))
+            print(dt_string + ' ||| ' + str(row[0]) + ' ||| LCP = ' + str(lcp[0].value) + ' ||| CLS = ' + str(cls[0].value) + ' ||| TBT = ' + str(tbt[0].value))
 
  
 if __name__ == '__main__':
