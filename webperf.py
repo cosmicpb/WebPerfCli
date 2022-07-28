@@ -52,7 +52,7 @@ def func(d, s, k, o):
                 msg = message_Exp.find(responseJson)
 
                 webvitals = [b, str(row[0]), r.status_code, 'ERROR', 'ERROR', 'ERROR']
-                c = ' Error. Status Code = ' + str(r.status_code) + '  ' + msg[0].value
+                c = b + ' ||| ' + str(row[0]) +' ERROR. Status Code = ' + str(r.status_code) + '  ' + msg[0].value
                 print(c)
                 if(o):
                     with open(o, 'a', newline='') as output:
