@@ -15,7 +15,7 @@ from datetime import datetime
 @click.option('-d', required=True, type=str)
 @click.option('-s', required=True, type=str)
 @click.option('-k', required=True, type=str)
-@click.option('-o', required=True, type=str)
+@click.option('-o', type=str)
 
 
 
@@ -50,10 +50,12 @@ def hello(d, s, k, o):
                 webvitals = [b, str(row[0]), r.status_code, 'ERROR', 'ERROR', 'ERROR']
                 c = ' Error. Status Code = ' + str(r.status_code) + '  ' + msg[0].value
                 print(c)
-                with open(o, 'a', newline='') as output:
-                    wrt = writer(output)
-                    wrt.writerow(webvitals)
-                
+                if(o):
+
+                    with open(o, 'a', newline='') as output:
+                        wrt = writer(output)
+                        wrt.writerow(webvitals)
+                    
                 
     
             else:
@@ -70,9 +72,11 @@ def hello(d, s, k, o):
                 tbt = tbt_Exp.find(responseJson)
 
                 webvitals = [b, str(row[0]), r.status_code, str(lcp[0].value), str(cls[0].value), str(tbt[0].value)]
-                with open(o, 'a', newline='') as output:
-                    wrt = writer(output)
-                    wrt.writerow(webvitals)
+                if(o):
+
+                    with open(o, 'a', newline='') as output:
+                        wrt = writer(output)
+                        wrt.writerow(webvitals)
                               
 
                 a = b + ' ||| ' + str(row[0]) + ' ||| LCP = ' + str(lcp[0].value) + ' ||| CLS = ' + str(cls[0].value) + ' ||| TBT = ' + str(tbt[0].value)
