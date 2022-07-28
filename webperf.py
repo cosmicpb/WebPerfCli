@@ -41,7 +41,7 @@ def hello(d, s, k, o):
             '&strategy=' + s +
             '&key=' + k)
 
-            if(r.status_code>400):
+            if(r.status_code>=400):
 
                 responseJson = r.json()
 
