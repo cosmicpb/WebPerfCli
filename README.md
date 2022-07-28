@@ -1,5 +1,5 @@
 # WebPerfCli
-## Using Python Click to performing web pages
+## Extract Web Vitals data with command line (Python/CLI).
 
 WebPerfCli is a web performance CLI application to measure Web Vitals without html tags inside your code.
 
