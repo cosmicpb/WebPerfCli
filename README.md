@@ -39,6 +39,7 @@ pip install -r requirements.txt
 python webperf.py -d massa.csv -s desktop -k <YOUR_KEY> -o output.csv
 ```
 
+You can see the output.csv file in the same directory.
 
 ## License
 MIT
