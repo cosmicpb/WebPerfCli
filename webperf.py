@@ -39,7 +39,7 @@ def hello(d, s, k, o):
 
             r =requests.get('https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=' + row[0] +
             '&strategy=' + s +
-            '&key=' + 'AIzaSyCekLHfORXKbN3vHcquYi0lTQSCjjxDeHA')
+            '&key=' + k)
 
             if(r.status_code>400):
 
@@ -70,7 +70,7 @@ def hello(d, s, k, o):
                 tbt_Exp = parse('$.lighthouseResult.audits["total-blocking-time"].numericValue')
                 tbt = tbt_Exp.find(responseJson)
 
-                webvitals = [b, str(row[0]), r.status_code, str(lcp[0].value), str(cls[0].value), str(tbt[0].value)]
+                webvitals = [b, str(row[0].value), r.status_code, str(lcp[0].value), str(cls[0].value), str(tbt[0].value)]
                 with open(o, 'a', newline='') as output:
                     wrt = writer(output)
                     wrt.writerow(webvitals)
