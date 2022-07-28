@@ -69,7 +69,7 @@ def hello(d, s, k, o):
                 tbt_Exp = parse('$.lighthouseResult.audits["total-blocking-time"].numericValue')
                 tbt = tbt_Exp.find(responseJson)
 
-                webvitals = [b, str(row[0].value), r.status_code, str(lcp[0].value), str(cls[0].value), str(tbt[0].value)]
+                webvitals = [b, str(row[0]), r.status_code, str(lcp[0].value), str(cls[0].value), str(tbt[0].value)]
                 with open(o, 'a', newline='') as output:
                     wrt = writer(output)
                     wrt.writerow(webvitals)
