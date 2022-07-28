@@ -32,7 +32,7 @@ pip install -r requirements.txt
 ## Using the WebPerfPy
 
 1. Set the data mass: Open massa.csv file and add the URLs that need to be tested.
-2. Open the [PageSpeed Insights](https://developers.google.com/speed/docs/insights/v5/get-started) page and get a API Key.
+2. Open the [PageSpeed Insights](https://developers.google.com/speed/docs/insights/v5/get-started) page and get an API Key.
 3. Run the command below:
 
 ```sh
@@ -40,7 +40,7 @@ python webperf.py -d massa.csv -s desktop -k <YOUR_KEY> -o output.csv
 ```
 
 ## Output
-O arquivo output.csv é gravado  na seguinte ordem:
+O arquivo output.csv é gravado na seguinte ordem:
 
 dd_mm_YYYY.HH_MM_SS, URL, Status Code, LCP, CLS, TBT.
 
