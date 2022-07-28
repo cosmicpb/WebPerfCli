@@ -39,7 +39,10 @@ pip install -r requirements.txt
 python webperf.py -d massa.csv -s desktop -k <YOUR_KEY> -o output.csv
 ```
 
-You can see the output.csv file in the same directory.
+## Output
+O arquivo output.csv é gravado  na seguinte ordem:
+
+dd_mm_YYYY.HH_MM_SS, URL, Status Code, LCP, CLS, TBT.
 
 ## License
 MIT
