@@ -23,13 +23,18 @@ def hello(m, s, k):
         csv_data = csv.reader(data_csv)
 
         for row in csv_data:
+            now = datetime.now()
+            a = now.strftime("%d_%m_%Y.%H_%M_%S")
+            b = now.strftime("%d_%m_%Y.%H_%M_%S")
+            a = a + ' ||| ' + row[0] + ' Started'
+            print(a, end='\r')
 
-            r =requests.get('https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=' + row[0] 
-            + '&strategy=' + s
-            + '&key=' + k)
+
+
+            r =requests.get('https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=' + row[0] +
+            '&strategy=' + s +
+            '&key=' + k)
             responseJson = r.json()
-
-
 
             lcp_Exp = parse('$.lighthouseResult.audits["largest-contentful-paint"].numericValue')
             lcp = lcp_Exp.find(responseJson)
@@ -40,12 +45,11 @@ def hello(m, s, k):
             tbt_Exp = parse('$.lighthouseResult.audits["total-blocking-time"].numericValue')
             tbt = tbt_Exp.find(responseJson)
 
-            now = datetime.now()
-            dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
+            a = b + ' ||| ' + str(row[0]) + ' ||| LCP = ' + str(lcp[0].value) + ' ||| CLS = ' + str(cls[0].value) + ' ||| TBT = ' + str(tbt[0].value)
 
-
+            print(a)
             
-            print(dt_string + ' ||| ' + str(row[0]) + ' ||| LCP = ' + str(lcp[0].value) + ' ||| CLS = ' + str(cls[0].value) + ' ||| TBT = ' + str(tbt[0].value))
+           
 
  
 if __name__ == '__main__':
