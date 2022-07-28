@@ -39,7 +39,7 @@ def hello(d, s, k, o):
 
             r =requests.get('https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=' + row[0] +
             '&strategy=' + s +
-            '&key=' + k)
+            '&key=' + 'AIzaSyCekLHfORXKbN3vHcquYi0lTQSCjjxDeHA')
 
             if(r.status_code>400):
 
@@ -56,8 +56,7 @@ def hello(d, s, k, o):
                     wrt.writerow(webvitals)
                 
                 
-                
-
+    
             else:
 
                 responseJson = r.json()
@@ -80,11 +79,7 @@ def hello(d, s, k, o):
                 a = b + ' ||| ' + str(row[0]) + ' ||| LCP = ' + str(lcp[0].value) + ' ||| CLS = ' + str(cls[0].value) + ' ||| TBT = ' + str(tbt[0].value)
 
                 print(a)
-
-            
-
-
-                
+               
            
 
  
