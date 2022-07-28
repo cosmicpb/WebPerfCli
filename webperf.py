@@ -51,11 +51,13 @@ def func(d, s, k, o):
                 message_Exp = parse('$.error.message')
                 msg = message_Exp.find(responseJson)
 
-                webvitals = [b, str(row[0]), r.status_code, 'ERROR', 'ERROR', 'ERROR']
+                
                 c = b + ' ||| ' + str(row[0]) +' ERROR. Status Code = ' + str(r.status_code) + '  ' + msg[0].value
                 print(c)
+
                 if(o):
                     with open(o, 'a', newline='') as output:
+                        webvitals = [b, str(row[0]), r.status_code, 'ERROR', 'ERROR', 'ERROR']
                         wrt = writer(output)
                         wrt.writerow(webvitals)
                     
@@ -74,10 +76,11 @@ def func(d, s, k, o):
                 tbt_Exp = parse('$.lighthouseResult.audits["total-blocking-time"].numericValue')
                 tbt = tbt_Exp.find(responseJson)
 
-                webvitals = [b, str(row[0]), r.status_code, str(lcp[0].value), str(cls[0].value), str(tbt[0].value)]
+                
                 
                 if(o):
                     with open(o, 'a', newline='') as output:
+                        webvitals = [b, str(row[0]), r.status_code, str(lcp[0].value), str(cls[0].value), str(tbt[0].value)]
                         wrt = writer(output)
                         wrt.writerow(webvitals)
                               
