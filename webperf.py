@@ -12,7 +12,6 @@ from datetime import datetime
 
 
 @click.command()
-##@click.option('-u', required=True, type=str)
 @click.option('-d', required=True, type=str)
 @click.option('-s', required=True, type=str)
 @click.option('-k', required=True, type=str)
