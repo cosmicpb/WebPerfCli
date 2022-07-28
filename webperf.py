@@ -9,6 +9,7 @@ import requests
 import csv
 from csv import writer
 from datetime import datetime
+import gui
 
 
 @click.command()
@@ -19,7 +20,10 @@ from datetime import datetime
 
 
 
-def hello(d, s, k, o):
+def func(d, s, k, o):
+    gui.hellogui(d,s,o)
+
+    count = 0
 
     
     
@@ -51,7 +55,6 @@ def hello(d, s, k, o):
                 c = ' Error. Status Code = ' + str(r.status_code) + '  ' + msg[0].value
                 print(c)
                 if(o):
-
                     with open(o, 'a', newline='') as output:
                         wrt = writer(output)
                         wrt.writerow(webvitals)
@@ -72,8 +75,8 @@ def hello(d, s, k, o):
                 tbt = tbt_Exp.find(responseJson)
 
                 webvitals = [b, str(row[0]), r.status_code, str(lcp[0].value), str(cls[0].value), str(tbt[0].value)]
+                
                 if(o):
-
                     with open(o, 'a', newline='') as output:
                         wrt = writer(output)
                         wrt.writerow(webvitals)
@@ -87,4 +90,5 @@ def hello(d, s, k, o):
 
  
 if __name__ == '__main__':
-    hello()
+    
+    func()
