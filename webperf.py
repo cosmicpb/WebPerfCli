@@ -18,14 +18,11 @@ import gui
 @click.option('-k', required=True, type=str)
 @click.option('-o', type=str)
 
-
-
 def func(d, s, k, o):
+
     gui.hellogui(d,s,o)
 
-    count = 0
-
-    
+    count = 0   
     
     with open(d) as data_csv:
         csv_data = csv.reader(data_csv)
@@ -37,8 +34,6 @@ def func(d, s, k, o):
             b = now.strftime("%d_%m_%Y.%H_%M_%S")
             a = a + ' ||| ' + row[0] + ' Started'
             print(a, end='\r')
-
-
 
             r =requests.get('https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=' + row[0] +
             '&strategy=' + s +
@@ -52,7 +47,7 @@ def func(d, s, k, o):
                 msg = message_Exp.find(responseJson)
 
                 
-                c = b + ' ||| ' + str(row[0]) +' ERROR. Status Code = ' + str(r.status_code) + '  ' + msg[0].value
+                c = b + ' ||| ' + str(row[0]) + ' ERROR. Status Code = ' + str(r.status_code) + '  ' + msg[0].value
                 print(c)
 
                 if(o):
@@ -67,25 +62,25 @@ def func(d, s, k, o):
 
                 responseJson = r.json()
 
-                lcp_Exp = parse('$.lighthouseResult.audits["largest-contentful-paint"].numericValue')
+                lcp_Exp = parse('$.originLoadingExperience.metrics.LARGEST_CONTENTFUL_PAINT_MS.percentile')
                 lcp = lcp_Exp.find(responseJson)
 
-                cls_Exp = parse('$.lighthouseResult.audits["cumulative-layout-shift"].numericValue')
+                cls_Exp = parse('$.originLoadingExperience.metrics.CUMULATIVE_LAYOUT_SHIFT_SCORE.percentile')
                 cls = cls_Exp.find(responseJson)
 
-                tbt_Exp = parse('$.lighthouseResult.audits["total-blocking-time"].numericValue')
+                tbt_Exp = parse('$.originLoadingExperience.metrics.FIRST_INPUT_DELAY_MS.percentile')
                 tbt = tbt_Exp.find(responseJson)
 
                 
                 
                 if(o):
                     with open(o, 'a', newline='') as output:
-                        webvitals = [b, str(row[0]), r.status_code, str(lcp[0].value), str(cls[0].value), str(tbt[0].value)]
+                        webvitals = [b, str(row[0]), r.status_code, str(lcp[0].value), str(cls[0].value/100), str(tbt[0].value)]
                         wrt = writer(output)
                         wrt.writerow(webvitals)
                               
 
-                a = b + ' ||| ' + str(row[0]) + ' ||| LCP = ' + str(lcp[0].value) + ' ||| CLS = ' + str(cls[0].value) + ' ||| TBT = ' + str(tbt[0].value)
+                a = b + ' ||| ' + str(row[0]) + ' ||| LCP = ' + str(lcp[0].value) + ' ||| CLS = ' + str(cls[0].value/100) + ' ||| FID = ' + str(tbt[0].value)
 
                 print(a)
                
