@@ -29,7 +29,7 @@ cd WebPerfCli
 pip install -r requirements.txt
 ```
 
-## Using the WebPerfPy
+## Using the WebPerfCli
 
 1. Set the data mass: Open massa.csv file and add the URLs that need to be tested.
 2. Open the [PageSpeed Insights](https://developers.google.com/speed/docs/insights/v5/get-started) page and get an API Key.
